@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+
+    Copyright 2022 XEBIALABS
+
+    Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
+
+    The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
+
+    THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+
+-->
+<synthetic xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+           xmlns="http://www.xebialabs.com/deployit/synthetic"
+           xsi:schemaLocation="http://www.xebialabs.com/deployit/synthetic synthetic.xsd">
+
+    <!-- Définition d'un serveur générique -->
+    <type type="euroInformation.Serveur" label="Euro Information: Serveur" extends="configuration.HttpConnection">
+    </type>
+
+    <!-- Définition d'une tâche virtuelle -->
+    <type type="euroinformation.Task" extends="xlrelease.PythonScript" virtual="true">
+        <property name="taskColor" default="#1E3179" hidden="true" />
+        <property name="iconLocation" default="euroInformation/ei-logo.png" hidden="true" />
+    </type>
+
+    <!-- Définition de la tâche 'checkFinDePhase' -->
+    <type type="euroInformation.checkFinDePhase" extends="euroinformation.Task">
+    </type>
+
+    <!-- Définition de la tâche 'getSitesByEnvironment' -->
+    <type type="euroInformation.getSitesByEnvironment" extends="euroinformation.Task">
+        <property name="server" category="input" label="Serveur" referenced-type="euroInformation.Serveur" kind="ci"/>
+        <property name="guid" category="input" kind="string" label="GUID" required="true" description="GUID"/>
+        <property name="environment" category="input" kind="string" label="environment" required="true" description="environment"/>
+        <property name="returnCode" category="output"  kind="integer" label="Return Code" />
+        <property name="returnCodeSecondary" category="output" kind="string" label="Return Code Secondary" />
+        <property name="description" category="output" kind="string" label="Description" />
+        <property name="sitesList" category="output" kind="list_of_string" label="Sites List" />
+    </type>
+
+    <!-- Définition de la tâche 'enterpriseInitialisation' -->
+    <type type="euroInformation.enterpriseInitialisation" extends="euroinformation.Task">
+        <property name="templates" category="output" kind="list_of_string" label="Liste des templates" />
+        <property name="folders" category="output" kind="list_of_string" label="Liste des répertoires" />
+    </type>
+
+    <!-- Définition de la tâche 'enterpriseCopie' -->
+    <type type="euroInformation.enterpriseCopie" extends="euroinformation.Task">
+        <property name="newTemplateName" category="input" kind="string" label="Nouveau nom" />
+        <property name="templateToCopy" category="input" kind="string" label="Template"/>
+        <property name="folder" category="input" kind="string" label="Répertoire" />
+        <property name="folderEnterprise" category="input" kind="string" label="Origine" />
+    </type>
+
+</synthetic>
