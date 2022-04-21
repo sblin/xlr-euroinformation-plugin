@@ -11,7 +11,7 @@
 # Initialisation de la liste des templates
 templates = []
 
-folder = folderApi.find("Working/EI/Enterprise",1)
+folder = folderApi.find(pathTemplates,1)
 items = folderApi.getTemplates(folder.id)
 for item in items:
     tags = item.tags

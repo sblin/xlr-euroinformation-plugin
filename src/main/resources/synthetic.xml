@@ -41,6 +41,7 @@
 
     <!-- Définition de la tâche 'enterpriseInitialisation' -->
     <type type="euroInformation.enterpriseInitialisation" extends="euroinformation.Task">
+        <property name="pathTemplates" category="output" kind="string" label="Path templates" />
         <property name="templates" category="output" kind="list_of_string" label="Liste des templates" />
         <property name="folders" category="output" kind="list_of_string" label="Liste des répertoires" />
     </type>
